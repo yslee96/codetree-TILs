@@ -50,7 +50,6 @@ def rudolph_move(trun, row, col):
     dist, n_loc = heappop(pq)
     t_row, t_col = -n_loc[0], -n_loc[1]
     move_dir = find_dir(row, col, t_row, t_col)
-    print(move_dir)
 
     if row + rudolph_dirs[move_dir][0] == t_row and col + rudolph_dirs[move_dir][1] == t_col:
         santa_num = santa_exists[t_row][t_col]
@@ -155,4 +154,7 @@ for turn in range(num_turns):
     if is_done:
         break
     rudolph_row, rudolph_col = new_rudolph_row, new_rudolph_col
-print("scores: ",santa_scores)
+answer = []
+for num in range(1, num_santas+1):
+    answer.append(santa_scores[num])
+print(*answer)
