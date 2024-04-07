@@ -38,10 +38,10 @@ def find_dir(cur_row, cur_col, n_row, n_col):
             return 7
 
 def rudolph_move(trun, row, col):
-    global santa_exists
+    global santa_exists, santa_locs, santa_status, santa_scores
     pq = []
     for santa_num,santa_loc in santa_locs.items():
-        if santa_status[santa_num] != turn:
+        if santa_status[santa_num] == -1:
             continue
         dist = (row-santa_loc[0][0])**2 + (col-santa_loc[0][1])**2
         heappush(pq, (dist, (-santa_loc[0][0], -santa_loc[0][1])))
@@ -78,6 +78,7 @@ def rudolph_move(trun, row, col):
     return row + rudolph_dirs[move_dir][0], col + rudolph_dirs[move_dir][1]
 
 def santa_move(turn, t_row, t_col):
+    global santa_exists, santa_locs, santa_status, santa_scores
     for num in range(1, num_santas+1):
         if santa_status[num] != turn: 
             continue
@@ -131,6 +132,7 @@ def santa_move(turn, t_row, t_col):
                 santa_num = santa_num_at_arrival
 
 def finish_turn(turn):
+    global santa_status, santa_scores
     is_done = True
     for num in range(1, num_santas+1):
         if santa_status[num]== -1:
