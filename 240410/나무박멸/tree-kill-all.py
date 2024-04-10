@@ -59,7 +59,7 @@ def remove_trees(size, row, col, dist, year):
             if n_row < 0 or n_row >= size or n_col < 0 or n_col >= size or board[n_row][n_col] == -1:
                 break
             if board[n_row][n_col] >= 0:
-                board[n_row][n_col] = 0
+                board[n_row][n_col] = 0 if board[n_row][n_col] >= 0 else -1
                 is_available[n_row][n_col] = year+left_cnt+1
 
 def count_extinct_trees(size, row, col, dist):
