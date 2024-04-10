@@ -82,6 +82,9 @@ def tree_extinct(size, k, year):
                 extinct_trees = count_extinct_trees(size, i,j, k)
                 extinct_trees_pq.append([-extinct_trees, i, j])
 
+    if not extinct_trees_pq:
+        return 0
+
     extinct_trees_pq.sort()
     total_extinct, row, col = extinct_trees_pq[0]
     remove_trees(size,row,col,k, year)
